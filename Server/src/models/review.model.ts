@@ -1,7 +1,7 @@
 import {Entity, model, property} from '@loopback/repository';
 
 @model()
-export class Reservation extends Entity {
+export class Review extends Entity {
   @property({
     type: 'number',
     id: true,
@@ -10,42 +10,42 @@ export class Reservation extends Entity {
   id?: number;
 
   @property({
-    type: 'date',
-    required: true,
-  })
-  reservationDate: string;
-
-  @property({
     type: 'any',
     required: true,
   })
-  client: any;
-
-  @property({
-    type: 'any',
-    required: true,
-  })
-  car: any;
+  user: any;
 
   @property({
     type: 'number',
-    default: 0,
+    required: true,
   })
-  total?: number;
+  qualification: number;
+
+  @property({
+    type: 'date',
+    required: true,
+  })
+  date: string;
+
+  @property({
+    type: 'string',
+  })
+  detail?: string;
 
   @property({
     type: 'any',
+    required: true,
   })
-  route?: any;
+  userReviewed: any;
 
 
-  constructor(data?: Partial<Reservation>) {
+  constructor(data?: Partial<Review>) {
     super(data);
   }
 }
 
-export interface ReservationRelations {
+export interface ReviewRelations {
   // describe navigational properties here
 }
 
-export type ReservationWithRelations = Reservation & ReservationRelations;
+export type ReviewWithRelations = Review & ReviewRelations;
